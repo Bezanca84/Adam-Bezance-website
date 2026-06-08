@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community | Adam Bezance</title>
+  <meta name="description" content="Norfolk Power Platform User Group and the East of England Summit, built for the community, by the community.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .community-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .community-split .community-block {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .community-split .community-block-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .community-split .community-block-body .two-col-actions {
+      margin-top: auto;
+      padding-top: 20px;
+    }
+    @media (max-width: 1000px) {
+      .community-split { grid-template-columns: 1fr; }
+    }
+    .community-block {
+      background: var(--ob-surface);
+      border: 1px solid var(--ob-border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--ob-glow-card);
+      transition: all 220ms cubic-bezier(0.4,0,0.2,1);
+    }
+    .community-block-header {
+      padding: 32px 36px 28px;
+      border-bottom: 1px solid var(--ob-border);
+    }
+    .community-block-body {
+      padding: 32px 36px;
+    }
+    .community-icon {
+      width: 64px; height: 64px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+    .community-block-title {
+      font-size: clamp(20px,2vw,28px); font-weight: 800;
+      letter-spacing: -0.03em; margin-bottom: 12px; line-height: 1.1;
+    }
+    .community-block-body-text {
+      font-size: 16px; color: var(--ob-fg-2); line-height: 1.7; margin-bottom: 24px;
+    }
+    .detail-row {
+      display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start;
+    }
+    .detail-icon { flex-shrink: 0; margin-top: 2px; }
+    .detail-text { font-size: 15px; color: var(--ob-fg-2); line-height: 1.5; }
+    .detail-text strong { color: var(--ob-fg); }
+
+    .topics-row {
+      display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0;
+    }
+
+    .stats-row {
+      display: flex; gap: 40px; flex-wrap: wrap;
+      padding: 24px 32px;
+      background: var(--ob-elevated);
+      border-radius: var(--r-lg);
+      margin: 24px 0;
+    }
+    .stat-block {}
+    .stat-val { font-size: 28px; font-weight: 800; color: var(--ob-fg); }
+    .stat-lbl { font-size: 12px; color: var(--ob-fg-2); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+    .timeline {
+      border-left: 2px solid var(--ob-border);
+      padding-left: 24px;
+      margin: 24px 0;
+    }
+    .timeline-item { position: relative; margin-bottom: 24px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: -32px; top: 5px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--ob-blue);
+      box-shadow: 0 0 0 3px var(--ob-blue-dim);
+    }
+    .timeline-year { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ob-blue-lt); margin-bottom: 4px; }
+    .timeline-label { font-size: 15px; font-weight: 600; margin-bottom: 4px; color: var(--ob-fg); }
+    .timeline-detail { font-size: 14px; color: var(--ob-fg-2); line-height: 1.5; }
+
+    .two-col-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .two-col-actions .btn { flex: 1; justify-content: center; min-width: 140px; }
+
+    .eoes-date-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
+    .date-card {
+      background: var(--ob-elevated);
+      border: 1px solid var(--ob-border);
+      border-radius: var(--r-lg);
+      padding: 20px;
+    }
+    .date-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ob-blue-lt); margin-bottom: 8px; }
+    .date-card-day { font-size: 32px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; }
+    .date-card-rest { font-size: 14px; color: var(--ob-fg-2); margin-top: 4px; }
+    .date-card-type { font-size: 12px; color: var(--ob-fg-3); margin-top: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    @media (max-width: 900px) {
+      .community-block-header { padding: 32px 24px 24px; }
+      .community-block-body { padding: 32px 24px; }
+      .stats-row { gap: 24px; }
+      .eoes-date-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-mark">AB</div>
+        <div>
+          <div class="nav-name">Adam Bezance</div>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="pluralsight.html">Pluralsight</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="speaking.html">Speaking</a></li>
+        <li><a href="community.html" class="active">Community</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <a href="about.html#contact" class="nav-cta">Let's Talk</a>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-header-label">Community</div>
+      <h1 class="page-header-title">Built for the<br>community.</h1>
+      <p class="page-header-body">The Microsoft community is one of the best things about working in this space. I've co-founded two communities in the East of England. Here's where to find them.</p>
+    </div>
+  </div>
+
+  <!-- COMMUNITY CONTENT -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="community-split">
+
+      <!-- NPPUG -->
+      <div class="community-block reveal">
+        <div class="community-block-header">
+          <div class="community-icon" style="background:var(--ob-blue-dim); border:1px solid var(--ob-blue-brd);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ob-blue-lt)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+            <div>
+              <span class="pill pill-blue" style="margin-bottom:12px; display:inline-flex;">User Group</span>
+              <h2 class="community-block-title">Norfolk Power Platform<br>User Group</h2>
+              <p style="font-size:15px; color:var(--ob-blue-lt); font-weight:600;">nppug.co.uk</p>
+            </div>
+            <a href="https://www.nppug.co.uk" target="_blank" rel="noopener" class="btn btn-primary">Visit nppug.co.uk →</a>
+          </div>
+        </div>
+        <div class="community-block-body">
+          <p class="community-block-body-text">Connect, learn, share, and grow together. A community for Microsoft Power Platform enthusiasts across Norwich and Norfolk, open to everyone from first-time makers to enterprise developers. All events are free.</p>
+
+          <div class="stats-row">
+            <div class="stat-block">
+              <div class="stat-val">385+</div>
+              <div class="stat-lbl">LinkedIn followers</div>
+            </div>
+            <div class="stat-block">
+              <div class="stat-val">Free</div>
+              <div class="stat-lbl">All events</div>
+            </div>
+            <div class="stat-block">
+              <div class="stat-val">Monthly</div>
+              <div class="stat-lbl">Meetups</div>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <svg class="detail-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ob-blue-lt)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div class="detail-text"><strong>Where:</strong> We meet regularly at Townshend House, Norwich. Check <a href="https://www.nppug.co.uk" target="_blank" rel="noopener" style="color:var(--ob-blue-lt);">nppug.co.uk</a> for the next event date and to register.</div>
+          </div>
+          <div class="detail-row">
+            <svg class="detail-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ob-blue-lt)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <div class="detail-text"><strong>Topics covered:</strong> Power Apps, Power Automate, Power BI, Power Pages, Copilot Studio, Dynamics 365, Dataverse, AI, Azure, and more.</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="two-col-actions">
+            <a href="https://www.nppug.co.uk/events" target="_blank" rel="noopener" class="btn btn-primary">View upcoming events</a>
+            <a href="https://www.linkedin.com/company/norfolk-power-platform-user-group/" target="_blank" rel="noopener" class="btn btn-secondary">Follow on LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- EoES -->
+      <div class="community-block reveal">
+        <div class="community-block-header">
+          <div class="community-icon" style="background:var(--ob-gold-bg); border:1px solid var(--ob-gold-brd);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ob-gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+            <div>
+              <span class="pill pill-gold" style="margin-bottom:12px; display:inline-flex;">Annual Summit</span>
+              <h2 class="community-block-title">East of England Summit</h2>
+              <p style="font-size:15px; color:var(--ob-gold); font-weight:600; opacity:0.85;">eoes.co.uk</p>
+            </div>
+            <a href="https://www.eoes.co.uk" target="_blank" rel="noopener" class="btn btn-primary">Visit eoes.co.uk →</a>
+          </div>
+        </div>
+        <div class="community-block-body">
+          <p class="community-block-body-text">A community-led conference bringing Power Platform professionals together for hands-on learning, expert sessions, and real connections. Organised entirely by volunteers from the Norfolk Power Platform User Group. Built for the community, by the community, every single year.</p>
+
+          <div class="eoes-date-cards">
+            <div class="date-card">
+              <div class="date-card-label">Day 01 · Workshops</div>
+              <div class="date-card-day">30</div>
+              <div class="date-card-rest">April 2027 · Friday</div>
+              <div class="date-card-rest" style="margin-top:4px;">Norwich (venue announced soon)</div>
+              <div class="date-card-type">Ticketed · limited places</div>
+            </div>
+            <div class="date-card">
+              <div class="date-card-label">Day 02 · Conference</div>
+              <div class="date-card-day">01</div>
+              <div class="date-card-rest">May 2027 · Saturday</div>
+              <div class="date-card-rest" style="margin-top:4px;">Norwich (venue announced soon)</div>
+              <div class="date-card-type">Free to attend</div>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">2026: Most recent</div>
+              <div class="timeline-label">EoES 2026</div>
+              <div class="timeline-detail">31 sessions across 4 tracks. Keynote: Chris Huntingford. Full gallery, speakers and session catalogue still online at eoes.co.uk.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2027: Next edition</div>
+              <div class="timeline-label">30 April – 1 May 2027, Norwich</div>
+              <div class="timeline-detail">Two full days: Friday workshops, Saturday conference with parallel tracks, keynote, expo hall and lunch included. Bigger scope, same community spirit.</div>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <svg class="detail-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ob-gold)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div class="detail-text"><strong>What's on offer:</strong> Hands-on workshops, parallel conference tracks, expert sessions from community speakers and Microsoft MVPs, networking, and an exhibition area.</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <p style="font-size:14px; color:var(--ob-fg-2); margin-bottom:20px; line-height:1.6;">Interested in sponsoring EoES 2027, speaking, or volunteering? Head to eoes.co.uk or get in touch directly.</p>
+
+          <div class="two-col-actions">
+            <a href="https://www.eoes.co.uk/sponsorship" target="_blank" rel="noopener" class="btn btn-primary">Become a 2027 sponsor</a>
+            <a href="https://www.eoes.co.uk/gallery-2026" target="_blank" rel="noopener" class="btn btn-secondary">2026 gallery & sessions</a>
+          </div>
+        </div>
+      </div>
+
+      </div><!-- /community-split -->
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div class="reveal" style="font-size:18px; color:var(--ob-fg-2); line-height:1.75;">
+        <div class="section-label" style="margin-bottom:16px;">Why it matters</div>
+        <p style="margin-bottom:20px;">The Microsoft community is genuinely one of the best things about working in this space. I've learned more from community sessions and conversations than from any official training. The whole point of the Norfolk group and the Summit is to create that same experience for people in the region.</p>
+        <p>If you're working with Power Platform or Microsoft AI and you're in the East of England, come to an event. They're free, they're friendly, and you'll leave with something useful.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="nav-mark">AB</div>
+        <div>
+          <div class="nav-name">Adam Bezance</div>
+          <div class="footer-tagline">Building intelligent solutions with Microsoft AI.</div>
+        </div>
+      </div>
+      <nav class="footer-links">
+        <a href="blog.html">Blog</a>
+        <a href="pluralsight.html">Pluralsight</a>
+        <a href="speaking.html">Speaking</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About</a>
+        <a href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </nav>
+      <div class="footer-copy">© 2025 Adam Bezance</div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+    // Mobile nav
+  (function() {
+    var toggle = document.getElementById('mobileToggle');
+    var menu   = document.getElementById('navLinks');
+    function openMenu() {
+      menu.classList.add('open');
+      toggle.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      menu.classList.remove('open');
+      toggle.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', function() {
+      menu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    // Close when any nav link is tapped
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', closeMenu);
+    });
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+    function initReveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+      });
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+      }, { threshold: 0 });
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initReveal);
+    } else { initReveal(); }
+    window.addEventListener('load', initReveal);
+  </script>
+</body>
+</html>

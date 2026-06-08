@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What actually changes when you deploy M365 Copilot | Adam Bezance</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .post-hero {
+      padding: calc(var(--nav-h) + 64px) 0 64px;
+      border-bottom: 1px solid var(--ob-border);
+    }
+    .post-hero-inner { max-width: 760px; margin: 0 auto; padding: 0 40px; }
+    .post-meta-row {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .post-date { font-size: 13px; color: var(--ob-fg-3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+    .post-read-time { font-size: 13px; color: var(--ob-fg-3); }
+    .post-title {
+      font-size: clamp(32px,4.5vw,56px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+    }
+    .post-excerpt {
+      font-size: 19px; color: var(--ob-fg-2); line-height: 1.65;
+    }
+
+    .post-body { max-width: 760px; margin: 0 auto; padding: 64px 40px; }
+    .post-body h2 {
+      font-size: clamp(22px,2.5vw,28px); font-weight: 800; letter-spacing: -0.03em;
+      margin: 48px 0 16px; color: var(--ob-fg);
+    }
+    .post-body h3 {
+      font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+      margin: 32px 0 12px; color: var(--ob-fg);
+    }
+    .post-body p {
+      font-size: 17px; color: var(--ob-fg-2); line-height: 1.7; margin-bottom: 20px;
+    }
+    .post-body ul, .post-body ol {
+      margin: 0 0 20px 20px;
+    }
+    .post-body li {
+      font-size: 17px; color: var(--ob-fg-2); line-height: 1.7; margin-bottom: 8px;
+    }
+    .post-body blockquote {
+      border-left: 3px solid var(--ob-blue);
+      padding: 16px 24px;
+      margin: 32px 0;
+      background: var(--ob-blue-dim);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+    }
+    .post-body blockquote p { color: var(--ob-fg); margin: 0; font-style: italic; }
+    .post-body code {
+      font-family: var(--mono); font-size: 14px;
+      background: var(--ob-elevated); padding: 2px 6px; border-radius: var(--r-sm);
+      color: var(--ob-blue-lt);
+    }
+    .post-author {
+      display: flex; align-items: center; gap: 16px;
+      padding: 32px;
+      background: var(--ob-surface);
+      border: 1px solid var(--ob-border);
+      border-radius: var(--r-lg);
+      margin-top: 64px;
+    }
+    .post-author-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--ob-blue-dim);
+      border: 2px solid var(--ob-blue-brd);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 800; color: var(--ob-blue-lt);
+      flex-shrink: 0; overflow: hidden;
+    }
+    .post-author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .post-author-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .post-author-bio { font-size: 14px; color: var(--ob-fg-2); line-height: 1.5; }
+
+    .related-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    @media (max-width: 900px) {
+      .post-hero-inner { padding: 0 24px; }
+      .post-body { padding: 40px 24px; }
+      .related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-mark">AB</div>
+        <div>
+          <div class="nav-name">Adam Bezance</div>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="pluralsight.html">Pluralsight</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="speaking.html">Speaking</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <a href="about.html#contact" class="nav-cta">Let's Talk</a>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- POST HERO -->
+  <div class="post-hero">
+    <div class="post-hero-inner">
+      <div class="post-meta-row">
+        <span class="pill pill-blue">Microsoft AI</span>
+        <span class="post-date">June 2025</span>
+        <span class="post-read-time">· 8 min read</span>
+      </div>
+      <h1 class="post-title">What actually changes when you deploy M365 Copilot, and what doesn't</h1>
+      <p class="post-excerpt">Everyone's talking about Copilot. Fewer people are talking about what happens six months after go-live. Here's what I've seen from real deployments: the wins, the friction, and what to plan for that the vendor decks don't mention.</p>
+    </div>
+  </div>
+
+  <!-- POST BODY -->
+  <article class="post-body">
+    <p>I've been involved in a handful of M365 Copilot deployments now. Different industries, different sizes, different levels of executive excitement. And a few things have become consistent enough that I think they're worth writing down.</p>
+
+    <p>This isn't a "here's how to deploy Copilot" article. Microsoft's documentation is fine for that. This is about the stuff that happens after you've done everything right: licensed your users, run the training sessions, set up your data governance, and you're six months in.</p>
+
+    <h2>What actually changes</h2>
+
+    <p>The biggest genuine shift I've seen is in meeting culture. Copilot's meeting summary and transcript features genuinely reduce the cognitive tax of being "the person who takes notes". When it works well, it changes who can contribute meaningfully in meetings because they're no longer spending mental energy on documentation.</p>
+
+    <p>Email handling gets meaningfully faster for users who receive high volumes of structured, predictable emails. Think: reports, status updates, supplier communications. Not so much for nuanced stakeholder conversations where context matters.</p>
+
+    <blockquote>
+      <p>The users who get the most out of Copilot are the ones who were already decent at articulating what they wanted. The tool rewards clarity of thought.</p>
+    </blockquote>
+
+    <p>Writing first drafts is legitimately faster. Not the final output — the first draft. Teams that build the habit of starting with Copilot and then editing tend to produce better output than those who either ignore it or accept the first result unchanged.</p>
+
+    <h2>What doesn't change</h2>
+
+    <p>The quality of your underlying data and processes. Copilot is a window into your Microsoft 365 environment. If your SharePoint is a mess of stale, poorly-named files in unmanaged sites, Copilot will faithfully surface that mess back at you. Faster.</p>
+
+    <p>The need for critical thinking. One of the underappreciated risks in early adoption is confident hallucination, where Copilot produces a plausible-sounding summary that's factually wrong about a meeting or document. Users need to verify, not just copy.</p>
+
+    <h2>What I'd plan for</h2>
+
+    <ul>
+      <li><strong>A champions programme</strong>: find the people who are genuinely curious and let them lead peer learning. Top-down mandates to "use Copilot more" tend to produce performative adoption, not genuine behaviour change.</li>
+      <li><strong>Specific use cases, not general "use it for everything"</strong>: give teams 2-3 concrete scenarios that map to their actual work. Abstract AI training doesn't stick.</li>
+      <li><strong>Data housekeeping before, not after</strong>: if you wouldn't be happy surfacing your SharePoint structure to a new employee, sort that out before Copilot makes it more visible to everyone.</li>
+      <li><strong>Feedback loops</strong>: what's working? What's broken? Build a lightweight mechanism to capture this from day one.</li>
+    </ul>
+
+    <h2>The honest summary</h2>
+
+    <p>M365 Copilot is genuinely useful. It's not transformative in the way the marketing suggests. It's a capable productivity layer that makes certain tasks meaningfully faster, and a handful of workflows genuinely different.</p>
+
+    <p>Plan for it like you'd plan any change programme: with clear success criteria, realistic timelines, and the expectation that some users will get a lot out of it and others won't find it useful for a long time.</p>
+
+    <p>That's okay. That's how technology actually gets adopted.</p>
+
+    <!-- Author card -->
+    <div class="post-author">
+      <div class="post-author-avatar">
+        <img src="assets/adam-bezance.jpg" alt="Adam Bezance" onerror="this.style.display='none'; this.parentElement.textContent='AB';">
+      </div>
+      <div>
+        <div class="post-author-name">Adam Bezance</div>
+        <div class="post-author-bio">Managing Consultant at Robiquity. Microsoft Power Platform Super User. 15× Microsoft certified. Co-founder of the Norfolk Power Platform User Group and East of England Power Platform Summit. Pluralsight author.</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- RELATED POSTS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-header-left">
+          <div class="section-label">Keep reading</div>
+          <h2 class="section-title">More articles</h2>
+        </div>
+        <a href="blog.html" class="btn btn-secondary">All articles →</a>
+      </div>
+      <div class="related-grid">
+        <a href="blog-post.html" class="card reveal" style="text-decoration:none; display:flex; flex-direction:column;">
+          <div class="card-body" style="flex:1;">
+            <span class="pill pill-blue" style="margin-bottom:14px; display:inline-flex;">Copilot Studio</span>
+            <div class="card-title" style="margin-bottom:8px;">Building your first agent in Copilot Studio: the bits the docs don't tell you</div>
+          </div>
+          <div class="card-footer"><span class="card-meta">May 2025</span><span class="card-link">Read →</span></div>
+        </a>
+        <a href="blog-post.html" class="card reveal reveal-delay-1" style="text-decoration:none; display:flex; flex-direction:column;">
+          <div class="card-body" style="flex:1;">
+            <span class="pill pill-blue" style="margin-bottom:14px; display:inline-flex;">Microsoft AI</span>
+            <div class="card-title" style="margin-bottom:8px;">Prompt engineering isn't a skill, it's a habit</div>
+          </div>
+          <div class="card-footer"><span class="card-meta">February 2025</span><span class="card-link">Read →</span></div>
+        </a>
+        <a href="blog-post.html" class="card reveal reveal-delay-2" style="text-decoration:none; display:flex; flex-direction:column;">
+          <div class="card-body" style="flex:1;">
+            <span class="pill pill-neutral" style="margin-bottom:14px; display:inline-flex;">Career</span>
+            <div class="card-title" style="margin-bottom:8px;">From citizen developer to consultant: the mindset shift nobody warns you about</div>
+          </div>
+          <div class="card-footer"><span class="card-meta">January 2025</span><span class="card-link">Read →</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="nav-mark">AB</div>
+        <div>
+          <div class="nav-name">Adam Bezance</div>
+          <div class="footer-tagline">Building intelligent solutions with Microsoft AI.</div>
+        </div>
+      </div>
+      <nav class="footer-links">
+        <a href="blog.html">Blog</a>
+        <a href="pluralsight.html">Pluralsight</a>
+        <a href="speaking.html">Speaking</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About</a>
+        <a href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </nav>
+      <div class="footer-copy">© 2025 Adam Bezance</div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+    // Mobile nav
+  (function() {
+    var toggle = document.getElementById('mobileToggle');
+    var menu   = document.getElementById('navLinks');
+    function openMenu() {
+      menu.classList.add('open');
+      toggle.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      menu.classList.remove('open');
+      toggle.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', function() {
+      menu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    // Close when any nav link is tapped
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', closeMenu);
+    });
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+    function initReveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+      });
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+      }, { threshold: 0 });
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initReveal);
+    } else { initReveal(); }
+    window.addEventListener('load', initReveal);
+  </script>
+</body>
+</html>

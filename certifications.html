@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certifications | Adam Bezance</title>
+  <meta name="description" content="Microsoft certifications: learning plans, study notes, and summaries from Adam Bezance.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .cert-card {
+      background: var(--ob-surface);
+      border: 1px solid var(--ob-border);
+      border-radius: var(--r-lg);
+      padding: 24px 20px;
+      box-shadow: var(--ob-glow-card);
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      text-align: center;
+      transition: all 220ms cubic-bezier(0.4,0,0.2,1);
+      position: relative;
+    }
+    .cert-card.active {
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .cert-card.active:hover {
+      border-color: var(--ob-blue-brd);
+      box-shadow: var(--ob-glow-card-hover);
+      transform: translateY(-3px);
+    }
+    .cert-card.placeholder {
+      opacity: 0.45;
+      border-style: dashed;
+    }
+    .cert-badge {
+      width: 56px; height: 56px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cert-code {
+      font-size: 13px; font-weight: 800; color: var(--ob-fg);
+      letter-spacing: 0.02em;
+    }
+    .cert-name {
+      font-size: 12px; font-weight: 500; color: var(--ob-fg-2);
+      line-height: 1.4;
+    }
+    .cert-status {
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    }
+
+    /* Detail section */
+    .cert-detail {
+      background: var(--ob-surface);
+      border: 1px solid var(--ob-border-md);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--ob-glow-card);
+    }
+    .cert-detail-header {
+      background: linear-gradient(135deg, var(--ob-blue-dim) 0%, var(--ob-elevated) 100%);
+      border-bottom: 1px solid var(--ob-border-md);
+      padding: 40px 48px;
+      display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center;
+    }
+    .cert-detail-badge {
+      width: 80px; height: 80px; border-radius: 20px;
+      background: var(--ob-blue-dim); border: 1px solid var(--ob-blue-brd);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cert-detail-code {
+      font-size: 13px; font-weight: 700; color: var(--ob-blue-lt);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
+    }
+    .cert-detail-title {
+      font-size: clamp(22px, 2.5vw, 32px); font-weight: 800;
+      letter-spacing: -0.03em; margin-bottom: 12px;
+    }
+    .cert-detail-meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .cert-detail-body { padding: 48px; }
+    .cert-placeholder-content {
+      text-align: center; padding: 48px 32px;
+    }
+
+    @media (max-width: 900px) {
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+      .cert-detail-header { grid-template-columns: 1fr; padding: 32px 24px; }
+      .cert-detail-body { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-mark">AB</div>
+        <div>
+          <div class="nav-name">Adam Bezance</div>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="pluralsight.html">Pluralsight</a></li>
+        <li><a href="certifications.html" class="active">Certifications</a></li>
+        <li><a href="speaking.html">Speaking</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <a href="about.html#contact" class="nav-cta">Let's Talk</a>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-header-label">Learning</div>
+      <h1 class="page-header-title">Certifications</h1>
+      <p class="page-header-body">15× Microsoft certified. I'm building out learning plans, study notes, and honest summaries for each: the kind of resource I wish existed when I was preparing.</p>
+    </div>
+  </div>
+
+  <!-- CERT GRID -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-header-left">
+          <div class="section-label">All certifications</div>
+          <h2 class="section-title">Microsoft credentials</h2>
+        </div>
+      </div>
+
+      <div class="cert-grid" style="margin-top:32px;">
+
+        <!-- AB-731 — active, clickable -->
+        <a href="#cert-ab731" class="cert-card active" onclick="showCert('ab731'); return false;">
+          <div style="position:absolute; top:12px; right:12px;">
+            <span class="pill pill-blue" style="font-size:9px; padding:3px 8px;">Study guide live</span>
+          </div>
+          <div class="cert-badge" style="background:var(--ob-blue-dim); border:1px solid var(--ob-blue-brd);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ob-blue-lt)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="cert-code">AB-731</div>
+          <div class="cert-name">Placeholder certification name</div>
+          <div class="cert-status" style="color:var(--ob-blue-lt);">View guide →</div>
+        </a>
+
+        <!-- Placeholders — remaining 14 -->
+        <div class="cert-card placeholder reveal reveal-delay-1">
+          <div class="cert-badge" style="background:rgba(255,255,255,0.03);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ob-fg-3)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+          <div class="cert-code" style="color:var(--ob-fg-3);">Coming soon</div>
+          <div class="cert-name">Study guide in progress</div>
+          <div class="cert-status" style="color:var(--ob-fg-3);">14 more to come</div>
+        </div>
+
+        <div class="cert-card placeholder reveal reveal-delay-2">
+          <div class="cert-badge" style="background:rgba(255,255,255,0.03);"></div>
+          <div class="cert-code" style="color:var(--ob-fg-3);">Coming soon</div>
+          <div class="cert-name">Study guide in progress</div>
+        </div>
+
+        <div class="cert-card placeholder reveal reveal-delay-3">
+          <div class="cert-badge" style="background:rgba(255,255,255,0.03);"></div>
+          <div class="cert-code" style="color:var(--ob-fg-3);">Coming soon</div>
+          <div class="cert-name">Study guide in progress</div>
+        </div>
+
+        <div class="cert-card placeholder reveal">
+          <div class="cert-badge" style="background:rgba(255,255,255,0.03);"></div>
+          <div class="cert-code" style="color:var(--ob-fg-3);">Coming soon</div>
+          <div class="cert-name">Study guide in progress</div>
+        </div>
+
+        <div class="cert-card placeholder reveal reveal-delay-1">
+          <div class="cert-badge" style="background:rgba(255,255,255,0.03);"></div>
+          <div class="cert-code" style="color:var(--ob-fg-3);">Coming soon</div>
+          <div class="cert-name">Study guide in progress</div>
+        </div>
+
+        <div class="cert-card placeholder reveal reveal-delay-2">
+          <div class="cert-badge" style="background:rgba(255,255,255,0.03);"></div>
+          <div class="cert-code" style="color:var(--ob-fg-3);">Coming soon</div>
+          <div class="cert-name">Study guide in progress</div>
+        </div>
+
+        <div class="cert-card placeholder reveal reveal-delay-3">
+          <div class="cert-badge" style="background:rgba(255,255,255,0.03);"></div>
+          <div class="cert-code" style="color:var(--ob-fg-3);">Coming soon</div>
+          <div class="cert-name">Study guide in progress</div>
+        </div>
+
+        <div class="cert-card placeholder reveal">
+          <div class="cert-badge" style="background:rgba(255,255,255,0.03);"></div>
+          <div class="cert-code" style="color:var(--ob-fg-3);">Coming soon</div>
+          <div class="cert-name">Study guide in progress</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AB-731 DETAIL -->
+  <section class="section" id="cert-ab731" style="display:none;">
+    <div class="container">
+      <div class="cert-detail reveal">
+        <div class="cert-detail-header">
+          <div class="cert-detail-badge">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--ob-blue-lt)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div>
+            <div class="cert-detail-code">AB-731</div>
+            <h2 class="cert-detail-title">Placeholder certification name</h2>
+            <div class="cert-detail-meta">
+              <span class="pill pill-blue">Passed</span>
+              <span style="font-size:13px; color:var(--ob-fg-2);">Add your pass date here</span>
+              <a href="#" target="_blank" rel="noopener" class="card-link">View credential →</a>
+            </div>
+          </div>
+        </div>
+        <div class="cert-detail-body">
+          <div class="cert-placeholder-content">
+            <div style="width:64px;height:64px;border-radius:16px;background:var(--ob-blue-dim);border:1px solid var(--ob-blue-brd);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ob-blue-lt)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h3 style="font-size:22px; font-weight:700; margin-bottom:12px;">Study guide coming soon</h3>
+            <p style="font-size:16px; color:var(--ob-fg-2); max-width:480px; margin:0 auto 32px; line-height:1.65;">
+              I'll be adding my learning plan, study resources, key topics, and an honest breakdown of what to expect in the exam. Add your content here when ready.
+            </p>
+            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+              <a href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener" class="btn btn-primary">Follow for updates</a>
+              <button onclick="hideCert()" class="btn btn-secondary">← Back to all certs</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTIFY -->
+  <section class="section section-alt" id="notifySection">
+    <div class="container-narrow">
+      <div class="cta-band reveal">
+        <div class="eyebrow" style="margin-bottom:16px; justify-content:center;">Stay in the loop</div>
+        <h2>Get notified as guides go live</h2>
+        <p>I'll be publishing study guides and learning plans for all 15 certs. Follow on LinkedIn to be notified first.</p>
+        <div class="btn-row">
+          <a href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Follow on LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="nav-mark">AB</div>
+        <div>
+          <div class="nav-name">Adam Bezance</div>
+          <div class="footer-tagline">Building intelligent solutions with Microsoft AI.</div>
+        </div>
+      </div>
+      <nav class="footer-links">
+        <a href="blog.html">Blog</a>
+        <a href="pluralsight.html">Pluralsight</a>
+        <a href="speaking.html">Speaking</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About</a>
+        <a href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </nav>
+      <div class="footer-copy">© 2025 Adam Bezance</div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+    // Mobile nav
+  (function() {
+    var toggle = document.getElementById('mobileToggle');
+    var menu   = document.getElementById('navLinks');
+    function openMenu() {
+      menu.classList.add('open');
+      toggle.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      menu.classList.remove('open');
+      toggle.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', function() {
+      menu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    // Close when any nav link is tapped
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', closeMenu);
+    });
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+    function initReveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+      });
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+      }, { threshold: 0 });
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initReveal);
+    } else { initReveal(); }
+    window.addEventListener('load', initReveal);
+
+    function showCert(id) {
+      document.getElementById('cert-ab731').style.display = 'block';
+      document.getElementById('notifySection').style.display = 'none';
+      setTimeout(() => {
+        document.getElementById('cert-ab731').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+
+    function hideCert() {
+      document.getElementById('cert-ab731').style.display = 'none';
+      document.getElementById('notifySection').style.display = 'block';
+      document.querySelector('.cert-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>
