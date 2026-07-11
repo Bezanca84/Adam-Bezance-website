@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Adam Bezance</title>
+  <meta name="description" content="Get in touch with Adam Bezance, Microsoft MVP, about Copilot governance, AI Centres of Excellence, or anything Power Platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .contact-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+    .form-head { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; border-top: 2px solid var(--line-dark); padding-top: 16px; margin-bottom: 28px; }
+    .field { margin-bottom: 22px; }
+    .field label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .field input, .field textarea {
+      width: 100%; padding: 13px 14px;
+      font-family: var(--sans); font-size: 16px; color: var(--ink); /* 16px stops iOS zooming the page when a field is tapped */
+      background: var(--bg); border: 1px solid var(--line-dark); border-radius: 0;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 2px var(--blue-tint); }
+    .field textarea { min-height: 160px; resize: vertical; }
+    .form-note { font-size: 13px; color: var(--ink-3); margin-top: 14px; }
+    .form-status { display: none; margin-top: 18px; padding: 14px 16px; font-size: 14px; font-weight: 600; }
+    .form-status.ok { display: block; background: var(--blue-tint); color: var(--blue-deep); border-left: 4px solid var(--blue); }
+    .form-status.err { display: block; background: #FDEEEA; color: var(--red-deep); border-left: 4px solid var(--red); }
+    .aside-block { border-top: 2px solid var(--line-dark); padding-top: 16px; margin-bottom: 36px; }
+    .aside-block h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 18px; }
+    .aside-item { padding: 14px 0; border-top: 1px solid var(--line); }
+    .aside-item b { display: block; font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .aside-item span, .aside-item p { font-size: 14px; color: var(--ink-2); }
+    .aside-item a b:hover { color: var(--blue); }
+    @media (max-width: 840px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-head, .aside-block h3 { font-size: 15px; letter-spacing: 0.12em; }
+      .field label { font-size: 13px; }
+      .aside-item b { font-size: 16px; }
+      .aside-item span, .aside-item p { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Adam Bezance<span>.</span> <em>Microsoft MVP</em></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="pluralsight.html">Teaching</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta">Let's talk →</a>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="wrap">
+      <div class="kicker">Get in touch</div>
+      <h1>Let's <em>talk.</em></h1>
+      <p class="lede">Copilot governance, an AI Centre of Excellence, or just an honest conversation about where AI fits in your organisation. <strong>All welcome.</strong></p>
+    </div>
+  </header>
+
+  <main class="sec sec-red-tint">
+    <div class="wrap contact-grid">
+
+      <div>
+        <div class="form-head">Send a message</div>
+        <form id="contactForm" method="POST" action="https://api.web3forms.com/submit">
+          <input type="hidden" name="access_key" value="3cbaa875-593d-4444-b46c-5f715d0c2c9f">
+          <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" type="text" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" name="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="cf-subject">Subject</label>
+            <input id="cf-subject" type="text" name="subject">
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn-blue" id="cf-send">Send message</button>
+          <div class="form-status" id="cf-status"></div>
+          <p class="form-note">I read everything that lands here myself.</p>
+        </form>
+      </div>
+
+      <div>
+        <div class="aside-block">
+          <h3>Other ways to connect</h3>
+          <a class="aside-item" style="display:block;" href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener">
+            <b>LinkedIn →</b>
+            <span>in/adambezance · usually the fastest reply</span>
+          </a>
+          <a class="aside-item" style="display:block;" href="https://www.pluralsight.com/authors/adam-bezance" target="_blank" rel="noopener">
+            <b>Pluralsight →</b>
+            <span>My author profile and courses</span>
+          </a>
+          <a class="aside-item" style="display:block;" href="https://www.nppug.co.uk" target="_blank" rel="noopener">
+            <b>In person →</b>
+            <span>Norfolk Power Platform User Group, monthly in Norwich</span>
+          </a>
+        </div>
+
+        <div class="aside-block">
+          <h3>Before you ask</h3>
+          <div class="aside-item">
+            <b>What should I include?</b>
+            <p>A sentence or two on what you're trying to solve is plenty. If I'm not the right fit, I'll say so and point you somewhere useful.</p>
+          </div>
+          <div class="aside-item">
+            <b>How quickly will I hear back?</b>
+            <p>Within a day or two. If it's urgent, LinkedIn is quicker.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Adam Bezance · Microsoft MVP</span>
+      <nav class="footer-links">
+        <a href="blog.html">Blog</a>
+        <a href="community.html">Community</a>
+        <a href="pluralsight.html">Teaching</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <span>© 2026 Adam Bezance</span>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+  <script>
+    // AJAX submit via Web3Forms — visitors stay on the page and see an
+    // on-page confirmation. The access key in the hidden input is public by
+    // design; the destination email address lives only in the Web3Forms
+    // account, never in this code.
+    (function () {
+      var form = document.getElementById('contactForm');
+      var status = document.getElementById('cf-status');
+      var btn = document.getElementById('cf-send');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function (r) {
+          if (r.ok) {
+            form.reset();
+            status.className = 'form-status ok';
+            status.textContent = 'Thanks, your message is on its way. I\'ll get back to you within a day or two.';
+          } else {
+            throw new Error();
+          }
+        }).catch(function () {
+          status.className = 'form-status err';
+          status.textContent = 'Something went wrong sending that. Please try again, or reach me on LinkedIn.';
+        }).finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'Send message';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

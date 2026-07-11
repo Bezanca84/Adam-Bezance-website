@@ -3,233 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adam Bezance | Agent Architect</title>
-  <meta name="description" content="Managing Consultant, Microsoft AI & Power Platform specialist, speaker, community leader, and Pluralsight author.">
+  <title>Adam Bezance | Microsoft MVP · AI Governance &amp; Enablement for M365 Copilot &amp; Copilot Studio</title>
+  <meta name="description" content="Microsoft MVP in M365 Copilot and Copilot Studio. I help organisations govern and enable AI: Centres of Excellence, Copilot governance, and practical enablement that makes adoption stick.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <style>
-    /* ── Hero ── */
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: stretch;
-    }
-    .hero-inner {
-      max-width: 1320px;
-      width: 100%;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 400px;
-      align-items: stretch;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      pointer-events: none;
-    }
-    .hero-blob {
-      position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.18;
-    }
-    .hero-blob-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, #1D6FE8 0%, transparent 70%);
-      top: -100px; left: -100px;
-    }
-    .hero-blob-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, #7B5EA6 0%, transparent 70%);
-      bottom: 0; left: 30%;
-    }
-    .hero-blob-3 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, #50E6FF 0%, transparent 70%);
-      top: 20%; right: 0;
-    }
-    .hero-grid-overlay {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-      background-size: 52px 52px;
-    }
-    .hero-content {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: calc(var(--nav-h) + 60px) 48px 80px 40px;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 14px;
-      background: var(--ob-gold-bg);
-      border: 1px solid var(--ob-gold-brd);
-      border-radius: var(--r-full);
-      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--ob-gold);
-      margin-bottom: 28px;
-      width: fit-content;
-    }
-    .hero-eyebrow svg { width: 14px; height: 14px; }
-    .hero-title {
-      font-size: clamp(56px,7.5vw,96px);
-      font-weight: 800;
-      line-height: 0.97;
-      letter-spacing: -0.04em;
-      color: var(--ob-fg);
-      margin-bottom: 24px;
-    }
-    .hero-title span { color: var(--ob-blue-lt); }
-    .hero-sub {
-      font-size: clamp(17px,2vw,20px);
-      color: var(--ob-fg-2);
-      line-height: 1.6;
-      margin-bottom: 32px;
-      max-width: 520px;
-    }
-    .hero-pills {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      margin-bottom: 40px;
-    }
-    .hero-buttons {
-      display: flex; align-items: center; gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 56px;
-    }
-    .hero-stats {
-      display: flex; gap: 48px;
-      padding-top: 32px;
-      border-top: 1px solid var(--ob-border);
-    }
-    .stat-value {
-      font-size: 32px; font-weight: 800; letter-spacing: -0.03em; color: var(--ob-fg);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 13px; color: var(--ob-fg-2); margin-top: 4px;
-    }
-
-    /* Hero photo */
-    .hero-photo-col {
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-photo-wrap {
-      position: absolute;
-      inset: 0;
-    }
-    .hero-photo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-    .hero-photo-placeholder {
-      width: 100%; height: 100%; min-height: 600px;
-      background: linear-gradient(160deg, var(--ob-surface) 0%, var(--ob-elevated) 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 16px;
-    }
-    .hero-photo-initials {
-      width: 120px; height: 120px; border-radius: 50%;
-      background: var(--ob-blue-dim);
-      border: 2px solid var(--ob-blue-brd);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 40px; font-weight: 800; color: var(--ob-blue-lt);
-    }
-    .hero-photo-fade {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 180px;
-      background: linear-gradient(to top, var(--ob-canvas) 0%, transparent 100%);
-      pointer-events: none;
-    }
-
-    /* ── Feature grid ── */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    /* ── Blog preview ── */
-    .blog-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 20px;
-    }
-
-    /* ── Section header ── */
-    .section-header {
-      margin-bottom: 48px;
-      display: flex; align-items: flex-end; justify-content: space-between;
-      flex-wrap: wrap; gap: 16px;
-    }
-    .section-header-left {}
-
-    /* ── LinkedIn preview ── */
-    .linkedin-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    /* ── Hero responsive ── */
-    @media (max-width: 900px) {
-      .hero { min-height: auto; }
-      .hero-inner {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 340px;
-      }
-      .hero-photo-col {
-        display: block;
-        position: relative;
-        height: 340px;
-        overflow: hidden;
-      }
-      .hero-photo-wrap {
-        position: absolute;
-        inset: 0;
-      }
-      .hero-photo-wrap img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 15%;
-      }
-      .hero-content {
-        padding: calc(var(--nav-h) + 40px) 24px 48px;
-      }
-      .hero-stats { gap: 28px; }
-      .feature-grid { grid-template-columns: 1fr; }
-      .blog-grid { grid-template-columns: 1fr; }
-      .linkedin-grid { grid-template-columns: 1fr; }
-      .section-header { flex-direction: column; align-items: flex-start; }
-    }
-    @media (min-width: 901px) and (max-width: 1100px) {
-      .blog-grid { grid-template-columns: 1fr 1fr; }
-    }
-  </style>
 </head>
 <body>
 
   <!-- NAV -->
   <nav class="nav" id="mainNav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-mark">AB</div>
-        <div>
-          <div class="nav-name">Adam Bezance</div>
-        </div>
-      </a>
+      <a href="index.html" class="nav-logo">Adam Bezance<span>.</span> <em>Microsoft MVP</em></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="pluralsight.html">Pluralsight</a></li>
-        <li><a href="certifications.html">Certifications</a></li>
-        <li><a href="speaking.html">Speaking</a></li>
         <li><a href="community.html">Community</a></li>
+        <li><a href="pluralsight.html">Teaching</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
-      <a href="about.html#contact" class="nav-cta">Let's Talk</a>
+      <a href="contact.html" class="nav-cta">Let's talk →</a>
       <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -237,284 +31,105 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-blob hero-blob-1"></div>
-      <div class="hero-blob hero-blob-2"></div>
-      <div class="hero-blob hero-blob-3"></div>
-      <div class="hero-grid-overlay"></div>
-    </div>
-
-    <div class="hero-inner">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        Building<br>
-        smarter<br>
-        <span>with AI.</span>
-      </h1>
-
-      <p class="hero-sub">
-        I'm Adam Bezance, Managing Consultant at Robiquity, Microsoft Power Platform specialist, Centre of Excellence designer, community builder, and Pluralsight author. I help organisations govern, enable, and scale AI and automation that actually sticks.
-      </p>
-
-      <div class="hero-pills">
-        <span class="pill pill-blue">M365 Copilot</span>
-        <span class="pill pill-blue">Copilot Studio</span>
-        <span class="pill pill-blue">Power Platform</span>
-        <span class="pill pill-blue">AI Agents</span>
-        <span class="pill pill-blue">Centre of Excellence</span>
-        <span class="pill pill-neutral">Robiquity</span>
-        <span class="pill pill-neutral">Pluralsight Author</span>
-      </div>
-
-      <div class="hero-buttons">
-        <a href="about.html" class="btn btn-primary btn-lg">About me</a>
-      </div>
-
-      <div class="hero-stats">
-        <div>
-          <div class="stat-value">15×</div>
-          <div class="stat-label">Microsoft certified</div>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-main">
+        <div class="kicker">Microsoft MVP · M365 Copilot &amp; Copilot Studio</div>
+        <h1 class="hero-title">Adam <em>Bezance.</em></h1>
+        <div class="hero-role">AI Governance &amp; Enablement</div>
+        <p class="hero-sub">Anyone in your organisation can build an AI agent now. <strong>That's the opportunity, and the problem.</strong> I help organisations govern and enable M365 Copilot, Copilot Studio, and Power Platform.</p>
+        <div class="hero-actions">
+          <a href="blog.html" class="btn">Read the blog</a>
+          <a href="about.html" class="btn-blue">About me</a>
         </div>
+      </div>
+      <div class="hero-side">
         <div>
-          <div class="stat-value">2</div>
-          <div class="stat-label">Pluralsight courses</div>
+          <div class="photo"><img src="assets/Adam-Bezance.jpg" alt="Adam Bezance"></div>
+          <div class="photo-cap"><span>Adam Bezance</span><b>Microsoft MVP</b></div>
         </div>
-        <div>
-          <div class="stat-value">2</div>
-          <div class="stat-label">Community groups co-founded</div>
+        <div class="facts">
+          <div class="fact"><b>MVP</b><span>M365 Copilot &amp; Copilot Studio</span></div>
+          <div class="fact"><b>15×</b><span>Microsoft certified</span></div>
+          <div class="fact"><b>2</b><span>Communities co-founded</span></div>
+          <div class="fact"><b>2</b><span>Pluralsight courses</span></div>
         </div>
       </div>
     </div>
+  </header>
 
-    <!-- Photo -->
-    <div class="hero-photo-col">
-      <div class="hero-photo-wrap">
-        <img src="assets/Adam-Bezance.jpg" alt="Adam Bezance" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="hero-photo-placeholder" style="display:none;">
-          <div class="hero-photo-initials">AB</div>
-          <p style="color:var(--ob-fg-3);font-size:13px;">Add photo: assets/Adam-Bezance.jpg</p>
+  <!-- 01 FOCUS -->
+  <section class="sec sec-red-tint">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Where I focus</h2><span class="idx">01</span></div>
+      <div class="grid3 reveal">
+        <div class="cell">
+          <h3>AI Governance &amp; COE</h3>
+          <p>Copilot Studio means anyone can ship an agent by Friday. I design the guardrails, from environment strategy to DLP and agent lifecycle, so it stays exciting.</p>
+          <a href="about.html" class="more-link">More →</a>
         </div>
-        <div class="hero-photo-fade"></div>
-      </div>
-    </div>
-    </div><!-- /hero-inner -->
-  </section>
-
-  <!-- FEATURED SECTIONS -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-header-left">
-          <div class="section-label">What I do</div>
-          <h2 class="section-title">Explore the work</h2>
+        <div class="cell">
+          <h3>Copilot Enablement</h3>
+          <p>Governance without enablement is just saying no with extra steps. Training, maker communities, and practical guidance that turn licensed users into capable ones.</p>
+          <a href="about.html" class="more-link">More →</a>
         </div>
-      </div>
-
-      <div class="feature-grid">
-        <a href="blog.html" class="card reveal reveal-delay-1" style="text-decoration:none; display:block;">
-          <div class="card-body" style="padding: 32px;">
-            <div style="width:48px;height:48px;border-radius:12px;background:var(--ob-blue-dim);border:1px solid var(--ob-blue-brd);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ob-blue-lt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
-            </div>
-            <div class="card-title card-title-lg" style="margin-bottom:10px;">Blog</div>
-            <div class="card-body-text">Practical writing on Microsoft AI, Copilot Studio, Power Platform, and building a career in tech consulting.</div>
-            <div class="card-link" style="margin-top:20px;">Read articles →</div>
-          </div>
-        </a>
-
-        <a href="pluralsight.html" class="card reveal reveal-delay-2" style="text-decoration:none; display:block;">
-          <div class="card-body" style="padding: 32px;">
-            <div style="width:48px;height:48px;border-radius:12px;background:rgba(123,94,166,0.14);border:1px solid rgba(123,94,166,0.32);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4AEFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,3 19,12 5,21 5,3"/></svg>
-            </div>
-            <div class="card-title card-title-lg" style="margin-bottom:10px;">Pluralsight</div>
-            <div class="card-body-text">Two published courses on AI and prompt engineering. Straight-talking, practical content for business professionals.</div>
-            <div class="card-link" style="margin-top:20px;">View courses →</div>
-          </div>
-        </a>
-
-        <a href="speaking.html" class="card reveal reveal-delay-3" style="text-decoration:none; display:block;">
-          <div class="card-body" style="padding: 32px;">
-            <div style="width:48px;height:48px;border-radius:12px;background:rgba(80,230,255,0.12);border:1px solid rgba(80,230,255,0.28);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#50E6FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div class="card-title card-title-lg" style="margin-bottom:10px;">Speaking</div>
-            <div class="card-body-text">I speak on M365 Copilot, Copilot Studio, AI agents, Power Platform, and building communities in tech.</div>
-            <div class="card-link" style="margin-top:20px;">View talks →</div>
-          </div>
-        </a>
-
-        <a href="community.html" class="card reveal reveal-delay-1" style="text-decoration:none; display:block;">
-          <div class="card-body" style="padding: 32px;">
-            <div style="width:48px;height:48px;border-radius:12px;background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.28);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div class="card-title card-title-lg" style="margin-bottom:10px;">Community</div>
-            <div class="card-body-text">Co-founder of the Norfolk Power Platform User Group and the East of England Power Platform Summit.</div>
-            <div class="card-link" style="margin-top:20px;">Get involved →</div>
-          </div>
-        </a>
-
-        <a href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener" class="card reveal reveal-delay-2" style="text-decoration:none; display:block;">
-          <div class="card-body" style="padding: 32px;">
-            <div style="width:48px;height:48px;border-radius:12px;background:rgba(99,102,241,0.14);border:1px solid rgba(99,102,241,0.32);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </div>
-            <div class="card-title card-title-lg" style="margin-bottom:10px;">LinkedIn</div>
-            <div class="card-body-text">Short-form takes, threads, and carousels on Microsoft AI: things that don't need a full blog post.</div>
-            <div class="card-link" style="margin-top:20px;">Follow →</div>
-          </div>
-        </a>
-
-        <a href="about.html" class="card reveal reveal-delay-3" style="text-decoration:none; display:block;">
-          <div class="card-body" style="padding: 32px;">
-            <div style="width:48px;height:48px;border-radius:12px;background:var(--ob-gold-bg);border:1px solid var(--ob-gold-brd);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ob-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-            </div>
-            <div class="card-title card-title-lg" style="margin-bottom:10px;">Centre of Excellence</div>
-            <div class="card-body-text">Governance, enablement, and community: building Power Platform and AI CoEs that scale responsibly and drive real adoption.</div>
-            <div class="card-link" style="margin-top:20px;">Learn more →</div>
-          </div>
-        </a>
+        <div class="cell">
+          <h3>Community</h3>
+          <p>Co-founder of the Norfolk Power Platform User Group and the East of England Summit. The Microsoft community taught me most of what I know; I'm paying it back with interest.</p>
+          <a href="community.html" class="more-link">More →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- LATEST BLOG POSTS -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-header-left">
-          <div class="section-label">From the blog</div>
-          <h2 class="section-title">Recent writing</h2>
-        </div>
-        <a href="blog.html" class="btn btn-secondary">All articles →</a>
-      </div>
+  <!-- 02 BLOG -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Blog</h2><span class="idx"><a href="blog.html">02 · All posts →</a></span></div>
+      <a href="https://www.robiquity.com/news/what-the-world-cup-teaches-us-about-governance-yes-really" target="_blank" rel="noopener" class="post reveal">
+        <span class="pdate">Jun 2026</span>
+        <span class="ptag">Governance</span>
+        <span><h3>What the World Cup Teaches Us About Governance (Yes, Really!)</h3></span>
+        <span class="arr">→</span>
+      </a>
+      <a href="https://www.robiquity.com/news/four-guiding-stars-power-platform-coe" target="_blank" rel="noopener" class="post reveal">
+        <span class="pdate">Dec 2025</span>
+        <span class="ptag">Governance</span>
+        <span><h3>The Four Guiding Stars of a Power Platform CoE</h3></span>
+        <span class="arr">→</span>
+      </a>
+      <a href="https://www.robiquity.com/news/why-citizen-development-fails" target="_blank" rel="noopener" class="post reveal">
+        <span class="pdate">Nov 2025</span>
+        <span class="ptag">Governance</span>
+        <span><h3>Why Citizen Development Often Fails (and How to Fix It)</h3></span>
+        <span class="arr">→</span>
+      </a>
+    </div>
+  </section>
 
-      <div class="blog-grid">
-        <a href="https://www.robiquity.com/news/four-guiding-stars-power-platform-coe" target="_blank" rel="noopener"
-           class="card reveal" style="text-decoration:none; display:flex; flex-direction:column;">
-          <div style="aspect-ratio:16/9; overflow:hidden; background:var(--ob-elevated);">
-            <img src="https://cdn.prod.website-files.com/67c1d4049070463f46789703/693025ea15ffc5367e373f2a_robiquity_blog_festivepower.webp"
-                 alt="Four Guiding Stars of a Power Platform CoE"
-                 style="width:100%; height:100%; object-fit:cover; display:block;">
-          </div>
-          <div class="card-body" style="flex:1;">
-            <div class="card-eyebrow">Power Platform · CoE</div>
-            <div class="card-title card-title-lg" style="margin-bottom:10px;">The Four Guiding Stars of a Power Platform CoE</div>
-            <div class="card-body-text">Governance, enablement, community, and insights: the four pillars that make a Centre of Excellence work in practice.</div>
-          </div>
-          <div class="card-footer" style="align-items:center;">
-            <span style="display:flex; align-items:center; gap:8px;">
-              <span style="font-size:11px; font-weight:700; padding:3px 9px; background:var(--ob-elevated); border:1px solid var(--ob-border-md); border-radius:4px; color:var(--ob-fg); letter-spacing:0.04em; white-space:nowrap;">Dec 2025</span>
-              <span style="font-size:12px; font-weight:600; color:var(--ob-fg-2);">Robiquity</span>
-            </span>
-            <span class="card-link">Read on Robiquity →</span>
-          </div>
-        </a>
-
-        <a href="https://www.robiquity.com/news/why-citizen-development-fails" target="_blank" rel="noopener"
-           class="card reveal reveal-delay-1" style="text-decoration:none; display:flex; flex-direction:column;">
-          <div style="aspect-ratio:16/9; overflow:hidden; background:var(--ob-elevated);">
-            <img src="https://cdn.prod.website-files.com/67c1d4049070463f46789703/69144b9671b0613a2d530c36_robiquity_blog_citezendevelopment.webp"
-                 alt="Why Citizen Development Often Fails"
-                 style="width:100%; height:100%; object-fit:cover; display:block;">
-          </div>
-          <div class="card-body" style="flex:1;">
-            <div class="card-eyebrow">Power Platform · Governance</div>
-            <div class="card-title" style="margin-bottom:10px;">Why Citizen Development Often Fails (and How to Fix It)</div>
-            <div class="card-body-text">Most failures are preventable. Here are the common pitfalls and how to get ahead of them.</div>
-          </div>
-          <div class="card-footer" style="align-items:center;">
-            <span style="display:flex; align-items:center; gap:8px;">
-              <span style="font-size:11px; font-weight:700; padding:3px 9px; background:var(--ob-elevated); border:1px solid var(--ob-border-md); border-radius:4px; color:var(--ob-fg); letter-spacing:0.04em; white-space:nowrap;">Nov 2025</span>
-              <span style="font-size:12px; font-weight:600; color:var(--ob-fg-2);">Robiquity</span>
-            </span>
-            <span class="card-link">Read on Robiquity →</span>
-          </div>
-        </a>
-
-        <div class="card reveal reveal-delay-2" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:40px 24px; border-style:dashed; opacity:0.5;">
-          <div style="font-size:14px; font-weight:600; color:var(--ob-fg-3);">More articles on the way</div>
-        </div>
-      </div>
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="wrap reveal">
+      <h2>Thinking about the same problems? <em>Let's compare notes</em></h2>
+      <a href="contact.html" class="btn-blue">Get in touch</a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo">
-        <div class="nav-mark">AB</div>
-        <div>
-          <div class="nav-name">Adam Bezance</div>
-          <div class="footer-tagline">Building intelligent solutions with Microsoft AI.</div>
-        </div>
-      </div>
+      <span>Adam Bezance · Microsoft MVP</span>
       <nav class="footer-links">
         <a href="blog.html">Blog</a>
-        <a href="pluralsight.html">Pluralsight</a>
-        <a href="speaking.html">Speaking</a>
         <a href="community.html">Community</a>
+        <a href="pluralsight.html">Teaching</a>
         <a href="about.html">About</a>
-        <a href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="contact.html">Contact</a>
       </nav>
-      <div class="footer-copy">© 2025 Adam Bezance</div>
+      <span>© 2026 Adam Bezance</span>
     </div>
   </footer>
 
-  <script>
-    // Nav scroll
-    const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 30);
-    });
-
-    // Mobile nav
-    (function() {
-      var toggle = document.getElementById('mobileToggle');
-      var menu   = document.getElementById('navLinks');
-      function openMenu() {
-        menu.classList.add('open');
-        toggle.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeMenu() {
-        menu.classList.remove('open');
-        toggle.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-      toggle.addEventListener('click', function() {
-        menu.classList.contains('open') ? closeMenu() : openMenu();
-      });
-      menu.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', closeMenu);
-      });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeMenu();
-      });
-    })();
-
-    // Scroll reveal: immediate check + observer for below-fold elements
-    function initReveal() {
-      document.querySelectorAll('.reveal').forEach(el => {
-        const r = el.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) {
-          el.classList.add('visible');
-        }
-      });
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
-      }, { threshold: 0 });
-      document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initReveal);
-    } else {
-      initReveal();
-    }
-    window.addEventListener('load', initReveal);
-  </script>
+  <script src="js/site.js"></script>
 </body>
 </html>

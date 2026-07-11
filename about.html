@@ -4,289 +4,102 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | Adam Bezance</title>
-  <meta name="description" content="About Adam Bezance, Managing Consultant at Robiquity, Microsoft Power Platform specialist, community leader, Pluralsight author.">
+  <meta name="description" content="Adam Bezance: Microsoft MVP in M365 Copilot and Copilot Studio, Managing Consultant at Robiquity, Pluralsight author, and community co-founder.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .about-split {
-      display: grid; grid-template-columns: 340px 1fr; gap: 64px; align-items: start;
-    }
-    .about-photo-col { position: sticky; top: calc(var(--nav-h) + 32px); }
-    .about-photo {
-      width: 100%;
-      aspect-ratio: 3/4;
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      background: var(--ob-elevated);
-      border: 1px solid var(--ob-border);
-      box-shadow: var(--ob-glow-card);
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .about-photo-placeholder {
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
-    }
-    .about-photo-initials {
-      width: 96px; height: 96px; border-radius: 50%;
-      background: var(--ob-blue-dim); border: 2px solid var(--ob-blue-brd);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 36px; font-weight: 800; color: var(--ob-blue-lt);
-    }
-    .about-photo-badges {
-      display: flex; flex-direction: column; gap: 8px; margin-top: 20px;
-    }
-    .about-badge {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 14px;
-      background: var(--ob-surface);
-      border: 1px solid var(--ob-border);
-      border-radius: var(--r-md);
-      font-size: 13px; font-weight: 600; color: var(--ob-fg-2);
-      transition: border-color 220ms;
-    }
-    .about-badge:hover { border-color: var(--ob-blue-brd); }
-    .about-badge-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-
-    .about-content h2 {
-      font-size: clamp(24px,2.8vw,36px); font-weight: 800; letter-spacing: -0.03em;
-      margin: 48px 0 16px; line-height: 1.1;
-    }
-    .about-content h2:first-child { margin-top: 0; }
-    .about-content p {
-      font-size: 17px; color: var(--ob-fg-2); line-height: 1.75; margin-bottom: 18px;
-    }
-    .about-content p strong { color: var(--ob-fg); font-weight: 600; }
-
-    .certs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin: 24px 0; }
-    .cert-chip {
-      background: var(--ob-surface); border: 1px solid var(--ob-border);
-      border-radius: var(--r-md); padding: 10px 12px;
-      font-size: 11px; font-weight: 600; color: var(--ob-fg-2);
-      text-align: center; line-height: 1.4;
-    }
-
-    .contact-section {
-      background: var(--ob-surface);
-      border: 1px solid var(--ob-border);
-      border-radius: var(--r-xl);
-      padding: 48px;
-      margin-top: 48px;
-      box-shadow: var(--ob-glow-card);
-    }
-
-    @media (max-width: 900px) {
-      .about-split { grid-template-columns: 1fr; gap: 40px; }
-      .about-photo-col { position: static; }
-      .about-photo { max-width: 320px; aspect-ratio: 1/1; }
-      .certs-grid { grid-template-columns: repeat(2,1fr); }
-      .contact-section { padding: 32px 24px; }
-    }
-  </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav class="nav" id="mainNav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-mark">AB</div>
-        <div>
-          <div class="nav-name">Adam Bezance</div>
-        </div>
-      </a>
+      <a href="index.html" class="nav-logo">Adam Bezance<span>.</span> <em>Microsoft MVP</em></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="pluralsight.html">Pluralsight</a></li>
-        <li><a href="certifications.html">Certifications</a></li>
-        <li><a href="speaking.html">Speaking</a></li>
         <li><a href="community.html">Community</a></li>
+        <li><a href="pluralsight.html">Teaching</a></li>
         <li><a href="about.html" class="active">About</a></li>
       </ul>
-      <a href="#contact" class="nav-cta">Let's Talk</a>
+      <a href="contact.html" class="nav-cta">Let's talk →</a>
       <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <!-- PAGE HEADER -->
-  <div class="page-header">
-    <div class="page-header-inner">
-      <div class="page-header-label">About</div>
-      <h1 class="page-header-title">Adam Bezance</h1>
+  <header class="page-hero">
+    <div class="wrap">
+      <div class="kicker">About</div>
+      <h1>The short <em>version.</em></h1>
     </div>
-  </div>
+  </header>
 
-  <!-- ABOUT CONTENT -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="about-split">
-
-        <!-- Photo + badges -->
-        <div class="about-photo-col reveal">
-          <div class="about-photo">
-            <img src="assets/Adam-Bezance.jpg" alt="Adam Bezance"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="about-photo-placeholder" style="display:none;">
-              <div class="about-photo-initials">AB</div>
-              <p style="font-size:12px; color:var(--ob-fg-3); text-align:center;">Add photo: assets/Adam-Bezance.jpg</p>
-            </div>
-          </div>
-
-          <div class="about-photo-badges" style="margin-top:20px;">
-            <div class="about-badge">
-              <div class="about-badge-icon" style="background:rgba(0,120,212,0.15);">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              </div>
-              Managing Consultant · Robiquity
-            </div>
-            <div class="about-badge">
-              <div class="about-badge-icon" style="background:var(--ob-blue-dim);">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ob-blue-lt)" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              </div>
-              Power Platform Super User
-            </div>
-            <a href="https://www.pluralsight.com/authors/adam-bezance" target="_blank" rel="noopener" class="about-badge" style="color:var(--ob-fg-2);">
-              <div class="about-badge-icon" style="background:rgba(244,53,0,0.1);">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F43500" stroke-width="2"><polygon points="5,3 19,12 5,21 5,3"/></svg>
-              </div>
-              Pluralsight Author
-            </a>
-            <div class="about-badge">
-              <div class="about-badge-icon" style="background:var(--ob-gold-bg);">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ob-gold)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              </div>
-              Community Co-Founder
-            </div>
-            <div class="about-badge">
-              <div class="about-badge-icon" style="background:var(--ob-gold-bg);">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ob-gold)" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
-              </div>
-              15× Microsoft Certified
-            </div>
-          </div>
+  <main class="sec sec-red-tint">
+    <div class="wrap about-band">
+      <div>
+        <div class="photo"><img src="assets/Adam-Bezance.jpg" alt="Adam Bezance"></div>
+        <div class="photo-cap"><span>Adam Bezance</span><b>Microsoft MVP</b></div>
+      </div>
+      <div class="reveal">
+        <div class="kicker">Microsoft MVP · M365 Copilot &amp; Copilot Studio</div>
+        <h2>I help organisations adopt AI without losing control of it.</h2>
+        <p>I'm a <strong>Microsoft MVP in M365 Copilot and Copilot Studio</strong> and a Managing Consultant at <strong>Robiquity</strong>, an AI and automation consultancy. Day to day, I help organisations work out what's worth building with AI, how to govern it, and how to make it stick.</p>
+        <p>The centre of that work is <strong>AI governance and enablement</strong>. I design and build AI and Power Platform Centres of Excellence (environment strategy, DLP, ALM, agent lifecycle) alongside the enablement programmes, maker communities, and training that turn governance into an enabler rather than a blocker.</p>
+        <p>Away from client work, I'm a <strong>Pluralsight author</strong> with two published courses, a <strong>15-time Microsoft certified</strong> professional, and co-founder of the Norfolk Power Platform User Group and the East of England Summit.</p>
+        <div class="cred-list">
+          <span class="cred red">Microsoft MVP</span>
+          <span class="cred">15× Microsoft Certified</span>
+          <span class="cred">Pluralsight Author</span>
+          <span class="cred">Community Co-founder</span>
+          <span class="cred">Managing Consultant · Robiquity</span>
         </div>
+      </div>
+    </div>
+  </main>
 
-        <!-- Bio content -->
-        <div class="about-content reveal reveal-delay-1">
-          <h2>The short version</h2>
-          <p>I'm a Managing Consultant at <strong>Robiquity</strong>, a Microsoft-focused AI and automation consultancy. My work sits at the intersection of Microsoft Power Platform, generative AI, and business change: helping organisations figure out what's actually worth building, and then building it well.</p>
-
-          <p>I'm a <strong>Microsoft Power Platform Super User</strong> and 15-time Microsoft certified professional. I've been in and around the Microsoft ecosystem long enough to know the difference between what's genuinely useful and what's a feature demo that doesn't survive contact with real users.</p>
-
-          <h2>What I work on</h2>
-          <p>Day to day, I'm helping organisations deploy Microsoft AI: <strong>M365 Copilot</strong>, <strong>Copilot Studio</strong>, AI agents, and build on Power Platform. I'm involved across the full lifecycle: discovery, design, delivery, and the change management that actually makes it stick.</p>
-
-          <p>A significant part of what I do is helping organisations design and build <strong>Power Platform and AI Centres of Excellence</strong>. That means getting the governance right: environment strategy, DLP, ALM, while also building the enablement programmes, maker communities, and insight frameworks that turn a CoE from a policy document into something people actually use. The goal is always the same: make the right thing the easy thing, and let people innovate safely.</p>
-
-          <p>I tend to work with organisations where the technology is ready but the adoption strategy isn't, and with teams that want to build genuine capability rather than just tick a box.</p>
-
-          <h2>Community</h2>
-          <p>I co-founded the <strong>Norfolk Power Platform User Group</strong>, a local community for anyone working with Microsoft Power Platform in the region. We run regular in-person meetups focused on real experience, not polished slides.</p>
-
-          <p>I also co-founded the <strong>East of England Power Platform Summit</strong>, a full-day, community-organised conference for practitioners across the East of England. It's been running for a few years and keeps getting better. Next edition is 2027.</p>
-
-          <p>The Microsoft community is one of the genuinely good things about working in this space. The quality of knowledge-sharing and peer support is hard to find elsewhere.</p>
-
-          <h2>Teaching</h2>
-          <p>I'm a <strong>Pluralsight author</strong> with two published courses: one on prompt engineering for HR professionals, and one on navigating the societal impacts of AI. Both are aimed at business professionals who want practical guidance without the technical jargon.</p>
-
-          <p>I also write regularly on <a href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener" style="color:var(--ob-blue-lt);">LinkedIn</a> and here on the <a href="blog.html" style="color:var(--ob-blue-lt);">blog</a>, mostly short takes and practical articles on Microsoft AI, Power Platform, and community.</p>
-
-          <h2>Certifications</h2>
-          <p>I hold 15 Microsoft certifications across Power Platform, AI, and M365. I'm putting together proper learning plans and study summaries for each (<a href="certifications.html" style="color:var(--ob-blue-lt);">coming soon</a>).</p>
-
-          <div class="certs-grid">
-            <div class="cert-chip">PL-900</div>
-            <div class="cert-chip">PL-100</div>
-            <div class="cert-chip">PL-200</div>
-            <div class="cert-chip">PL-400</div>
-            <div class="cert-chip">PL-600</div>
-            <div class="cert-chip">MS-900</div>
-            <div class="cert-chip">AI-900</div>
-            <div class="cert-chip">AZ-900</div>
-            <div class="cert-chip">+ 7 more</div>
-          </div>
-
-          <!-- Contact -->
-          <div class="contact-section" id="contact">
-            <div class="section-label" style="margin-bottom:12px;">Get in touch</div>
-            <h2 style="margin-top:0; margin-bottom:16px;">Let's have a conversation</h2>
-            <p style="margin-bottom:28px;">Whether it's about a project, speaking, the community, or just a question about Microsoft AI, feel free to reach out. LinkedIn is the quickest way to get hold of me.</p>
-            <div style="display:flex; gap:12px; flex-wrap:wrap;">
-              <a href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Connect on LinkedIn</a>
-            </div>
-          </div>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>What I work on</h2><span class="idx">01</span></div>
+      <div class="grid3 reveal">
+        <div class="cell">
+          <h3>AI Centres of Excellence</h3>
+          <p>Designing the operating model that lets AI scale safely: governance frameworks, environment strategy, DLP, and the agent lifecycle from idea to retirement.</p>
         </div>
-
+        <div class="cell">
+          <h3>M365 Copilot &amp; Copilot Studio governance</h3>
+          <p>The controls conversation most rollouts skip: who can build agents, what they can touch, how you monitor them, and what happens when something goes wrong.</p>
+        </div>
+        <div class="cell">
+          <h3>Enablement &amp; adoption</h3>
+          <p>Training, maker communities, and practical guidance across the full lifecycle: discovery, design, delivery, and the change management that actually makes it stick.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <section class="contact" id="contact">
+    <div class="wrap reveal">
+      <h2>If you made it this far, we should probably talk. <em class="r">Say hi.</em></h2>
+      <a href="contact.html" class="btn-blue">Get in touch</a>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo">
-        <div class="nav-mark">AB</div>
-        <div>
-          <div class="nav-name">Adam Bezance</div>
-          <div class="footer-tagline">Building intelligent solutions with Microsoft AI.</div>
-        </div>
-      </div>
+      <span>Adam Bezance · Microsoft MVP</span>
       <nav class="footer-links">
         <a href="blog.html">Blog</a>
-        <a href="pluralsight.html">Pluralsight</a>
-        <a href="speaking.html">Speaking</a>
         <a href="community.html">Community</a>
+        <a href="pluralsight.html">Teaching</a>
         <a href="about.html">About</a>
-        <a href="https://linkedin.com/in/adambezance" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="contact.html">Contact</a>
       </nav>
-      <div class="footer-copy">© 2025 Adam Bezance</div>
+      <span>© 2026 Adam Bezance</span>
     </div>
   </footer>
 
-  <script>
-    const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
-    // Mobile nav
-  (function() {
-    var toggle = document.getElementById('mobileToggle');
-    var menu   = document.getElementById('navLinks');
-    function openMenu() {
-      menu.classList.add('open');
-      toggle.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMenu() {
-      menu.classList.remove('open');
-      toggle.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    toggle.addEventListener('click', function() {
-      menu.classList.contains('open') ? closeMenu() : openMenu();
-    });
-    // Close when any nav link is tapped
-    menu.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', closeMenu);
-    });
-    // Close on Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeMenu();
-    });
-  })();
-    function initReveal() {
-      document.querySelectorAll('.reveal').forEach(el => {
-        const r = el.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
-      });
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
-      }, { threshold: 0 });
-      document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initReveal);
-    } else { initReveal(); }
-    window.addEventListener('load', initReveal);
-  
+  <script src="js/site.js"></script>
+</body>
+</html>
