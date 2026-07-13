@@ -122,6 +122,7 @@ h1, h2, h3 { letter-spacing: -0.02em; }
   transition: color 160ms ease;
 }
 .more-link:hover { color: var(--red); }
+.all-posts { margin-top: 32px; }
 
 /* ── Hero (homepage) ── */
 .hero { border-bottom: 1px solid var(--line); }
@@ -171,6 +172,10 @@ h1, h2, h3 { letter-spacing: -0.02em; }
   padding-top: 10px; border-top: 1px solid var(--line-dark); margin-top: 10px;
 }
 .photo-cap b { color: var(--blue); }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.fact { border-top: 1px solid var(--line-dark); padding-top: 10px; }
+.fact b { display: block; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+.fact span { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
 
 /* ── Page hero (subpages) ── */
 .page-hero { padding: clamp(56px, 8vw, 88px) 0 clamp(40px, 6vw, 56px); border-bottom: 1px solid var(--line); }
@@ -431,6 +436,7 @@ h1, h2, h3 { letter-spacing: -0.02em; }
   .ptag { font-size: 12px; }
   .filter-btn { font-size: 13px; padding: 10px 18px; }
   .photo-cap { font-size: 12px; }
+  .fact span { font-size: 12px; }
   .hero-sub { font-size: 17px; }
   .page-hero .lede, .sec-intro { font-size: 17px; }
   .footer-inner { font-size: 13px; }
