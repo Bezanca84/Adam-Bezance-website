@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Connector Policies: DLP Grows Up | Adam Bezance</title>
+  <meta name="description" content="Advanced Connector Policies replace Power Platform's three-bucket DLP model with a default-deny allowlist. What changed, what's covered, and how to adopt it sensibly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Adam Bezance<span>.</span> <em>Microsoft MVP</em></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog.html" class="active">Blog</a></li>
+        <li><a href="../community.html">Community</a></li>
+        <li><a href="../pluralsight.html">Teaching</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <a href="../contact.html" class="nav-cta">Let's talk →</a>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <article class="article">
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="ptag">Governance</span>
+        <span>July 2026</span>
+        <span>·</span>
+        <span>5 min read</span>
+      </div>
+      <h1>Advanced Connector Policies: DLP grows up</h1>
+      <p class="lede">Advanced Connector Policies are now generally available, offering an alternative to Power Platform's three-bucket DLP model: a default-deny allowlist where a connector is either allowed, or it isn't.</p>
+    </header>
+
+    <div class="article-body">
+      <p>Data loss prevention policies have been the backbone of Power Platform connector governance for nearly a decade. Business, Non-Business, Blocked. Sort every connector into one of three buckets, hope nothing slips through, and try not to think too hard about the connectors you couldn't block at all.</p>
+
+      <p>There's now a different way to do it. Advanced Connector Policies (ACP) reached <a href="https://www.microsoft.com/en-us/power-platform/blog/2026/06/04/advanced-connector-policies-are-generally-available/" target="_blank" rel="noopener">general availability on 4 June 2026</a>, and they swap the three-bucket sorting exercise for a strict allowlist. Either a connector is allowed or it isn't.</p>
+
+      <p>This post covers what ACP is, why it exists, and how to approach it sensibly. You'll find it in the Power Platform admin centre under <strong>Security &gt; Data and privacy</strong>.</p>
+
+      <figure>
+        <img src="images/acp-data-and-privacy-highlighted.png" alt="Advanced connector policies in the Power Platform admin centre, under Security, Data and privacy">
+        <figcaption>Advanced connector policies sits alongside the classic Data policy option, which tells you Microsoft expects both to coexist for a while.</figcaption>
+      </figure>
+
+      <h2>What actually changed</h2>
+
+      <p>ACP is a strict allowlist with a <strong>default-deny posture</strong>. Everything is blocked unless you explicitly allow it. That includes new connectors. When Microsoft or a third-party publisher adds a certified connector to the platform, it arrives blocked. Nothing sneaks into your tenant because it's new.</p>
+
+      <p>Compare that with classic DLP, where a new connector lands in whichever default group your policy specifies, and where a handful of connectors were flat-out nonblockable. Under ACP on Managed Environments, you can block anything. Including the previously untouchable ones.</p>
+
+      <figure>
+        <img src="images/acp-allow-list.png" alt="An advanced connector policy showing five allowed connectors and 1,673 blocked">
+        <figcaption>Default-deny in practice. Five connectors allowed, 1,673 blocked, and note the MCP servers sitting in the allow list like any other connector.</figcaption>
+      </figure>
+
+      <p>The other headline changes:</p>
+
+      <p><strong>One policy per environment.</strong> Each environment has exactly one effective ACP, either configured directly or inherited from an environment group. If you've ever tried to work out which of seven overlapping DLP policies actually applies to a given environment, you'll appreciate this immediately.</p>
+
+      <p><strong>Action-level control.</strong> You can allow a connector but block specific actions within it. Triggers, internal actions, and deprecated actions are all visible and tagged, which classic DLP never showed you.</p>
+
+      <p><strong>Design-time enforcement.</strong> Makers get blocked while authoring, not just at runtime. No more building a flow, publishing it, and discovering the violation when it fails in production.</p>
+
+      <figure>
+        <img src="images/acp-design-time-block-power-automate.png" alt="Power Automate designer showing a policy violation error naming the Advanced Connector Policy">
+        <figcaption>The maker experience when a flow uses a blocked connector. The error names the Advanced Connector Policy and the restricted connector, so there's no guessing which rule fired.</figcaption>
+      </figure>
+
+      <p><strong>MCP server governance.</strong> Agents reach external tools through MCP servers, and ACP lets you block an MCP server the same way you block any connector. Classic DLP had no concept of this.</p>
+
+      <p><strong>No more Business vs Non-Business.</strong> The classification model is gone. Microsoft's own documentation puts it plainly and says the concept wasn't deemed effective in policy management. Most admins who've lived with it would agree.</p>
+
+      <h2>What ACP covers today (and what it doesn't)</h2>
+
+      <p>ACP is built on the certified connector catalogue. That means:</p>
+
+      <ul>
+        <li><strong>Certified connectors</strong>: fully supported, connector and action level</li>
+        <li><strong>MCP connectors</strong>: supported, server-level blocking</li>
+        <li><strong>Custom connectors</strong>: not yet supported, planned as a separate rule type</li>
+        <li><strong>HTTP connectors</strong>: not yet supported, planned alongside custom connectors</li>
+        <li><strong>Virtual connectors</strong>: not supported and never will be</li>
+      </ul>
+
+      <p>The custom and HTTP connector gap matters. If your governance relies on endpoint filtering or custom connector control, you'll be running classic DLP alongside ACP for a while yet. That's called <strong>mixed mode</strong>. At runtime the platform merges the most restrictive settings from both systems, so neither can loosen what the other tightened.</p>
+
+      <h2>Licensing and where it fits</h2>
+
+      <p>You can apply ACP to a single environment without Managed Environments, so nobody is priced out of migrating from classic DLP. There's a catch though. On non-Managed Environments, the nonblockable connectors stay nonblockable.</p>
+
+      <p>Applying ACP at scale through environment groups requires Managed Environments. That's also where ACP shines. Because policies are native to environment groups, the right policy automatically follows every environment created through personal developer environment provisioning and routing. No per-environment admin overhead.</p>
+
+      <p>ACP is off by default. Nothing changes in your tenant until an admin activates it, so there's no forced migration and no surprise enforcement.</p>
+
+      <h2>Should you care yet?</h2>
+
+      <p>Yes, but with a plan rather than a big bang. The sensible path:</p>
+
+      <ol>
+        <li><strong>Review your connector usage first.</strong> Power Platform inventory now includes preview visibility into connector and operation usage across apps, flows, and agents, which gives you the impact analysis you need before touching a policy.</li>
+        <li><strong>Pilot ACP on a single low-risk environment.</strong></li>
+        <li><strong>Keep classic DLP where ACP doesn't yet have parity</strong> (custom connectors, HTTP, and endpoint filtering; custom MCP servers are onboarded through custom connectors under the hood, so they sit in this gap too).</li>
+        <li><strong>Treat ACP-only mode as the endgame, not a near-term step.</strong> Because of the gaps above, switching classic DLP off today would drop real protections for most tenants. Revisit once Microsoft ships custom and HTTP connector support in ACP, which is publicly planned as its own rule type.</li>
+      </ol>
+
+      <p>Existing DLP policies don't auto-migrate, so building the allowlist is a deliberate exercise. Treat it as a governance redesign, not a checkbox. Done that way, ACP is the connector governance model most of us wished classic DLP had been all along.</p>
+
+      <p style="margin-top: 48px;"><a href="../blog.html" class="more-link">← All posts</a></p>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Adam Bezance · Microsoft MVP</span>
+      <nav class="footer-links">
+        <a href="../blog.html">Blog</a>
+        <a href="../community.html">Community</a>
+        <a href="../pluralsight.html">Teaching</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <span>© 2026 Adam Bezance</span>
+    </div>
+  </footer>
+
+  <script src="../js/site.js"></script>
+</body>
+</html>
