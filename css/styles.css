@@ -146,9 +146,15 @@ h1, h2, h3 { letter-spacing: -0.02em; }
 }
 .hero-sub { margin-top: 30px; font-size: 18px; color: var(--ink-2); max-width: 34em; }
 .hero-sub strong { color: var(--ink); }
+.hero-sub a {
+  color: var(--blue); font-weight: 600;
+  text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px;
+  transition: text-decoration-color 160ms ease;
+}
+.hero-sub a:hover { text-decoration-color: var(--blue); }
 .hero-actions { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
 
-.hero-side { padding: 48px 0 48px 48px; display: flex; flex-direction: column; gap: 28px; }
+.hero-side { padding: 48px 0 48px 48px; display: flex; flex-direction: column; justify-content: center; gap: 28px; }
 .photo { position: relative; }
 .photo img {
   width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center top;
@@ -165,10 +171,6 @@ h1, h2, h3 { letter-spacing: -0.02em; }
   padding-top: 10px; border-top: 1px solid var(--line-dark); margin-top: 10px;
 }
 .photo-cap b { color: var(--blue); }
-.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.fact { border-top: 1px solid var(--line-dark); padding-top: 10px; }
-.fact b { display: block; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
-.fact span { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
 
 /* ── Page hero (subpages) ── */
 .page-hero { padding: clamp(56px, 8vw, 88px) 0 clamp(40px, 6vw, 56px); border-bottom: 1px solid var(--line); }
@@ -320,6 +322,10 @@ h1, h2, h3 { letter-spacing: -0.02em; }
 .article-head .lede { font-size: 18px; color: var(--ink-2); }
 .article-body p { color: var(--ink-2); margin-bottom: 22px; font-size: 17px; line-height: 1.7; }
 .article-body p strong { color: var(--ink); }
+.article-body p a, .article-body li a {
+  color: var(--blue); text-decoration: underline; text-underline-offset: 3px;
+}
+.article-body p a:hover, .article-body li a:hover { color: var(--red); }
 .article-body h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.03em; margin: 44px 0 16px; }
 .article-body h3 { font-size: 20px; font-weight: 700; margin: 32px 0 12px; }
 .article-body ul, .article-body ol { color: var(--ink-2); margin: 0 0 22px 22px; }
@@ -328,6 +334,21 @@ h1, h2, h3 { letter-spacing: -0.02em; }
   border-left: 4px solid var(--red); padding-left: 20px; margin: 28px 0;
   font-size: 19px; font-weight: 600; color: var(--ink); line-height: 1.5;
 }
+.article-body figure { margin: 32px 0; }
+.article-body figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line-dark); cursor: zoom-in; }
+.article-body figcaption { font-size: 14px; color: var(--ink-3); margin-top: 10px; line-height: 1.5; }
+
+/* ── Lightbox ── */
+.lightbox {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px; background: rgba(10, 10, 10, 0.92);
+  opacity: 0; visibility: hidden; cursor: zoom-out;
+  transition: opacity 200ms ease, visibility 200ms ease;
+}
+.lightbox.open { opacity: 1; visibility: visible; }
+.lightbox img { max-width: 100%; max-height: 100%; display: block; background: #fff; }
+@media (max-width: 840px) { .lightbox { padding: 16px; } }
 
 /* ── Reveal ── */
 @media (prefers-reduced-motion: no-preference) {
@@ -349,10 +370,34 @@ h1, h2, h3 { letter-spacing: -0.02em; }
   .nav-links a { font-size: 20px; padding: 10px 0; color: var(--ink); }
   .nav-mobile-toggle { display: flex; }
 
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-main { border-right: none; padding-right: 0; }
-  .hero-side { padding-left: 0; }
+  /* Hero: kicker, title and role span full width; intro text + buttons
+     sit on the left with the photo + caption on the right */
+  .hero-grid {
+    grid-template-columns: 1.3fr 1fr;
+    column-gap: 20px;
+    grid-template-areas:
+      "kicker  kicker"
+      "title   title"
+      "role    role"
+      "sub     photo"
+      "actions actions";
+    align-items: start;
+    padding-top: 48px; padding-bottom: 48px;
+  }
+  .hero-main { display: contents; }
+  .hero-main .kicker { grid-area: kicker; }
+  .hero-title { grid-area: title; }
+  .hero-role { grid-area: role; }
+  .hero-sub { grid-area: sub; }
+  .hero-actions { grid-area: actions; }
+  .hero-side {
+    grid-area: photo; display: block;
+    padding: 0; margin-top: 30px; /* align photo top with the intro text */
+  }
+  .hero-side .photo-cap { flex-direction: column; gap: 2px; }
   .photo { max-width: 360px; }
+  .hero-actions .btn, .hero-actions .btn-blue { padding: 12px 16px; font-size: 12px; }
+  .hero-actions { justify-content: center; }
 
   .grid3 { grid-template-columns: 1fr; }
   .cell { border-right: none; border-bottom: 1px solid var(--line); padding-left: 0; }
@@ -363,6 +408,16 @@ h1, h2, h3 { letter-spacing: -0.02em; }
   .about-band { grid-template-columns: 1fr; }
   .about-band .photo { max-width: 320px; }
   .course { grid-template-columns: 1fr; gap: 10px; }
+
+  /* Hero kicker: drop the dash and shrink type so the full credential
+     fits on a single line on a phone */
+  .hero-main .kicker::before { display: none; }
+  .hero-main .kicker {
+    white-space: nowrap;
+    font-size: clamp(8.5px, 2.7vw, 13px);
+    letter-spacing: 0.06em;
+    max-width: 100%; overflow: hidden;
+  }
 
   /* Bigger type for small screens — labels and markers that read fine
      at desktop scale get lost on a phone */
@@ -375,10 +430,7 @@ h1, h2, h3 { letter-spacing: -0.02em; }
   .pdate, .event-date { font-size: 14px; }
   .ptag { font-size: 12px; }
   .filter-btn { font-size: 13px; padding: 10px 18px; }
-  .fact span { font-size: 12px; }
   .photo-cap { font-size: 12px; }
-  .hero-main { padding-top: 48px; padding-bottom: 48px; }
-  .hero-side { padding-top: 0; }
   .hero-sub { font-size: 17px; }
   .page-hero .lede, .sec-intro { font-size: 17px; }
   .footer-inner { font-size: 13px; }
@@ -388,6 +440,7 @@ h1, h2, h3 { letter-spacing: -0.02em; }
 /* Very small phones: rein the display type in so words don't clip */
 @media (max-width: 400px) {
   .hero-title { font-size: 42px; }
+  .hero-actions .btn, .hero-actions .btn-blue { padding: 11px 12px; font-size: 11px; }
   .page-hero h1 { font-size: 36px; }
   .contact h2 { font-size: 28px; }
 }
