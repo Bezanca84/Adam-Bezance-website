@@ -90,7 +90,7 @@
         <li><strong>MCP connectors</strong>: supported, server-level blocking</li>
         <li><strong>Custom connectors</strong>: not yet supported, planned as a separate rule type</li>
         <li><strong>HTTP connectors</strong>: not yet supported, planned alongside custom connectors</li>
-        <li><strong>Virtual connectors</strong>: not supported and never will be</li>
+        <li><strong>Virtual connectors</strong>: not supported, and <a href="https://learn.microsoft.com/en-us/power-platform/admin/advanced-connector-policies#supported-connector-types" target="_blank" rel="noopener">Microsoft has confirmed they won't be</a></li>
       </ul>
 
       <p>The custom and HTTP connector gap matters. If your governance relies on endpoint filtering or custom connector control, you'll be running classic DLP alongside ACP for a while yet. That's called <strong>mixed mode</strong>. At runtime the platform merges the most restrictive settings from both systems, so neither can loosen what the other tightened.</p>
@@ -109,12 +109,11 @@
 
       <ol>
         <li><strong>Review your connector usage first.</strong> Power Platform inventory now includes preview visibility into connector and operation usage across apps, flows, and agents, which gives you the impact analysis you need before touching a policy.</li>
-        <li><strong>Pilot ACP on a single low-risk environment.</strong></li>
+        <li><strong>Pilot ACP on a single low-risk environment.</strong> Choose somewhere with a few makers and no production dependencies. Allow only what's actually in use and watch what breaks. That tells you more than any planning workshop will.</li>
         <li><strong>Keep classic DLP where ACP doesn't yet have parity</strong> (custom connectors, HTTP, and endpoint filtering; custom MCP servers are onboarded through custom connectors under the hood, so they sit in this gap too).</li>
-        <li><strong>Treat ACP-only mode as the endgame, not a near-term step.</strong> Because of the gaps above, switching classic DLP off today would drop real protections for most tenants. Revisit once Microsoft ships custom and HTTP connector support in ACP, which is publicly planned as its own rule type.</li>
       </ol>
 
-      <p>Existing DLP policies don't auto-migrate, so building the allowlist is a deliberate exercise. Treat it as a governance redesign, not a checkbox. Done that way, ACP is the connector governance model most of us wished classic DLP had been all along.</p>
+      <p><strong>A note on ACP-only mode.</strong> Treat it as a target future state. Until ACP reaches parity on custom connectors, HTTP, and endpoint filtering, turning classic DLP off removes protections you're probably relying on. Revisit when those capabilities are available.</p>
 
       <p style="margin-top: 48px;"><a href="../blog.html" class="more-link">← All posts</a></p>
     </div>
