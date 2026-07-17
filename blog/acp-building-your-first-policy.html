@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Connector Policies: Building Your First Policy | Adam Bezance</title>
+  <meta name="description" content="The practical follow-on to the ACP overview: where the settings live, how single environment and environment group configuration differ, and what actually happens when you apply changes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Adam Bezance<span>.</span> <em>Microsoft MVP</em></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog.html" class="active">Blog</a></li>
+        <li><a href="../community.html">Community</a></li>
+        <li><a href="../pluralsight.html">Teaching</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <a href="../contact.html" class="nav-cta">Let's talk →</a>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <article class="article">
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="ptag">Governance</span>
+        <span>July 2026</span>
+        <span>·</span>
+        <span>4 min read</span>
+      </div>
+      <h1>Advanced Connector Policies: Building your first policy</h1>
+      <p class="lede">The practical follow-on to the ACP overview: where the settings live, how single environment and environment group configuration differ, and what actually happens when you apply changes.</p>
+    </header>
+
+    <div class="article-body">
+      <p>I covered what Advanced Connector Policies (ACP) are in an <a href="https://www.adambezance.co.uk/blog/advanced-connector-policies">earlier post</a>. This one is the practical follow-on, covering where the settings live, how single environment and environment group configuration differ, and what actually happens when you publish.</p>
+
+      <h2>Two ways in</h2>
+
+      <p>There are two places to configure an advanced connector policy in the Power Platform admin centre, and which one you use depends on scope.</p>
+
+      <p><strong>Single environment:</strong> Security &gt; Data and privacy &gt; Advanced connector policies. Select the environment, click Manage Connectors and define the policy, Save. Done. No environment groups, and notably, no Managed Environments requirement. This route exists specifically so that anyone on classic DLP can migrate without extra licensing cost. (Note: without Managed Environments, the nonblockable connectors remain nonblockable.)</p>
+
+      <figure>
+        <img src="images/ACPSingleEv.png" alt="Advanced connector policies panel for a single environment, opened from Security, Data and privacy">
+        <figcaption>The single-environment route: Security &gt; Data and privacy &gt; Advanced connector policies. No Managed Environments required.</figcaption>
+      </figure>
+
+      <p><strong>Environment group:</strong> Manage &gt; Environment groups &gt; select your group &gt; Rules tab &gt; Advanced connector policies. Define the policy, Save, then click Apply changes from the command bar. This route does require Managed Environments.</p>
+
+      <figure>
+        <img src="images/ACPEnvGroups1.png" alt="Advanced connector policies rule being defined on an environment group">
+        <figcaption>Defining the allow list on an environment group's ACP rule.</figcaption>
+      </figure>
+
+      <p>The one-per-environment rule applies regardless of route. Each environment has exactly one effective ACP, either set directly or inherited from its group. There is no policy stacking, no overlapping scopes, no mental arithmetic to work out the effective result. This alone fixes the single most confusing thing about classic DLP.</p>
+
+      <h2>What you see when you open the panel</h2>
+
+      <p>A fresh policy starts with the nonblockable connectors preloaded as allowed. Everything else in the certified catalogue is blocked. From there:</p>
+
+      <ul>
+        <li><strong>Add connectors</strong> opens the picker across all certified connectors. Select what your makers need and add them to the allowlist.</li>
+        <li><strong>Remove connector</strong> takes anything off the list, which blocks it. On Managed Environments this includes connectors that classic DLP treated as nonblockable.</li>
+        <li><strong>Edit actions</strong> provides access to allow/block actions and triggers within each connector.</li>
+        <li>A <strong>Status</strong> property at the top of the panel shows Applied or Not applied, so you can confirm enforcement state at a glance.</li>
+        <li>A <strong>Remove rule</strong> button disables ACP entirely for that scope.</li>
+      </ul>
+
+      <h2>What Apply changes actually does</h2>
+
+      <p>For environment groups, saving the rule isn't enough. You need to hit Apply changes from the command bar.</p>
+
+      <figure>
+        <img src="images/ACPEnvGroupApplyChanges.png" alt="The Apply changes button highlighted on an environment group's rules tab after saving an ACP rule">
+        <figcaption>Saving the rule only stages it. Apply changes is what pushes it to every environment in the group.</figcaption>
+      </figure>
+
+      <p>During publishing, the platform runs an environment lifecycle operation against every environment in the group, which cascades the policy to both the design-time and runtime infrastructure. You'll see it in environment history as "Update Managed Environment", which is useful for auditing when a policy change landed.</p>
+
+      <figure>
+        <img src="images/ACPEnvHistory.png" alt="Environment history timeline showing an Edit event followed by an Update Managed Environment operation, both succeeded">
+        <figcaption>The paper trail in environment history: the rule edit, then the lifecycle operation that cascades the policy.</figcaption>
+      </figure>
+
+      <p>One thing to be aware of here is that policy propagation is not instant. I've found that ACP changes can take several hours to take effect. Build propagation time into your change process and verify enforcement in the maker experience before declaring a change complete.</p>
+
+      <h2>Groups, inheritance, and what happens on the way out</h2>
+
+      <p>If you remove an environment from an environment group, it doesn't revert to an unpoliced state. It retains the last known ACP configuration from the group, which you can then adjust individually. That's a sensible failsafe, since leaving a group never silently drops your governance.</p>
+
+      <figure>
+        <img src="images/ACPGroupApplied.png" alt="The environment group's advanced connector policy showing Applied status with 15 connectors allowed">
+        <figcaption>The group's policy applied: 15 connectors allowed, 1,665 blocked.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/ACPEnvAfterLeavingGroup.png" alt="An individual environment's advanced connector policy showing the same 15 allowed connectors retained from the group">
+        <figcaption>The same environment after leaving the group, still carrying the group's allow list.</figcaption>
+      </figure>
+
+      <p>In the <a href="https://www.adambezance.co.uk/blog/advanced-connector-policies">first post</a> I covered what ACP changes about connector governance. Having now built and published policies with it, I'd add: it's also the operational model DLP should always have been. One policy per environment, a visible status, an audit trail, and a failsafe on the way out of a group.</p>
+
+      <p style="margin-top: 48px;"><a href="../blog.html" class="more-link">← All posts</a></p>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Adam Bezance · Microsoft MVP</span>
+      <nav class="footer-links">
+        <a href="../blog.html">Blog</a>
+        <a href="../community.html">Community</a>
+        <a href="../pluralsight.html">Teaching</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <span>© 2026 Adam Bezance</span>
+    </div>
+  </footer>
+
+  <script src="../js/site.js"></script>
+</body>
+</html>
